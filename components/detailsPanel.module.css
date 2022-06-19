@@ -1,0 +1,43 @@
+.detailsPanel{
+    background: transparent;
+    width: 800px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;   
+    backdrop-filter: blur(10px);
+    box-shadow: black -10px 0 20px 8px;
+    z-index: 10;
+}
+
+.shadowed{
+    box-shadow: black -10px 0 20px 8px;
+}
+
+.hidden{
+     transform: translateX(-800px); 
+     box-shadow:none;
+}
+
+/*
+import { useState } from 'react';
+import styles from './detailsPanel.module.css';
+
+export default function DetailsMenu(props){
+    console.warn(props)
+    const [hidden, setHidden] = useState(0);
+    const [shadowed, setShadowed] = useState(0);
+    console.log(props.hidden, hidden)
+    setTimeout(()=>{
+         setShadowed(true);
+         //${shadowed?styles.shadowed:""}
+    },1500)
+    return <>
+           <div className={`${styles.detailsPanel} ${props.hidden?styles.hidden:""} `}>
+
+           </div>
+     </>
+}
+
+*/

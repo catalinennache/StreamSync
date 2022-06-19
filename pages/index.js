@@ -1,37 +1,56 @@
 import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import { useEffect, useState } from 'react';
+import Card from '../components/card'
+import DetailsMenu from '../components/detailsPanel';
+import Header from '../components/header';
+import UiServiceManager from '../services/UiServiceManager';
+import ServiceManager from '../services/ServiceManager';
 
-export default function Home({ isConnected }) {
+
+
+export default function Home({ user }) {
+  var uicontrol =  UiServiceManager.getService("uicontrol");
+  //dataService.getCurrentUser();
+  //u
+  const [a, setA] = useState(true);
+  useEffect(() => {
+    
+    // Client-side-only code
+
+    // window.test = ()=>{
+    //   setA(false);
+    // }
+})
+  var b = false;
+
   return (
-    <div className="container">
+
+    <div className="container" onClick={()=>{
+      if(!b)
+         uicontrol.openDetailsPanel({test:"asd"});
+      else
+         uicontrol.closeDetailsPanel();
+      b = !b;
+    }}>
+          <DetailsMenu></DetailsMenu>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+     
       </Head>
-
+      <Header user={user}></Header>
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
+  
 
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
-
-        <p className="description">
+      
+        <p onClick={async ()=>{
+           
+          }} className="description">
           Get started by editing <code>pages/index.js</code>
         </p>
 
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <Card title="Documentation" body="Find in-depth information about Next.js features and API." ></Card>
 
           <a href="https://nextjs.org/learn" className="card">
             <h3>Learn &rarr;</h3>
@@ -69,7 +88,7 @@ export default function Home({ isConnected }) {
         </a>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
@@ -223,24 +242,11 @@ export default function Home({ isConnected }) {
 }
 
 export async function getServerSideProps(context) {
-  try {
-    await clientPromise
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
+  var dataService = ServiceManager.getService("dataservice");
 
-    return {
-      props: { isConnected: true },
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      props: { isConnected: false },
-    }
+  var user = await dataService.getUser();
+  return {
+    props: { user:user },
   }
+
 }
