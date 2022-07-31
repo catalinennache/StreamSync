@@ -10,17 +10,7 @@ import ServiceManager from '../services/ServiceManager';
 
 export default function Home({ user }) {
   var uicontrol =  UiServiceManager.getService("uicontrol");
-  //dataService.getCurrentUser();
-  //u
-  const [a, setA] = useState(true);
-  useEffect(() => {
-    
-    // Client-side-only code
 
-    // window.test = ()=>{
-    //   setA(false);
-    // }
-})
   var b = false;
 
   return (
@@ -243,7 +233,7 @@ export default function Home({ user }) {
 
 export async function getServerSideProps(context) {
   var dataService = ServiceManager.getService("dataservice");
-
+console.log(dataService)
   var user = await dataService.getUser();
   return {
     props: { user:user },
