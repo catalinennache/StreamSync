@@ -1,0 +1,47 @@
+.loginForm{
+    height: 400px;
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: calc(50vh - 200px);
+    box-shadow: 0 0 18px -10px black;
+    position: relative;
+}
+
+.row{
+    padding: 10px;
+    display: block;
+}
+.logo{
+    text-align: center;
+    font-size: 27px;
+}
+.credentials{
+    width: 80%;
+    margin: 0 auto;
+    border: none;
+    display: block;
+    border-radius: 10px;
+    border-bottom: 1px solid gray;
+    padding: 7px;
+    outline: none;
+}
+.loginButton{
+    margin: 0 auto;
+    display: block;
+    border: none;
+    padding: 10px;
+    width: 50%;
+    border-radius: 100px;
+    
+}
+.ready{
+    color: white;
+    background: -webkit-linear-gradient(right, #21d4fd, #b721ff);
+    cursor: pointer;
+    transition: .3s ease-out;
+}
+.ready:hover{
+    box-shadow: 0 0 18px -10px black;
+}
