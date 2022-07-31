@@ -2,6 +2,7 @@ import styles from './header.module.css';
 
 export default function Header(props){
     console.log(props);
+    if(props.user)
     return <><div className={styles.header}>
         <h1 style={{fontSize:'17px', margin:'0', float:'left'}}>StreamSync</h1> 
         <div className={styles.userArea}>
@@ -12,5 +13,7 @@ export default function Header(props){
             </div>
         </div>
     </div></>
+    else
+        return <></>
 }
 

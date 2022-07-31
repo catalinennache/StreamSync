@@ -39,9 +39,9 @@ export default function Home({ user }) {
      
       </Head>
       <Header user={user}></Header>
-      <main>
+      <main> 
   
-
+ 
       
         <p onClick={async ()=>{
            
@@ -242,11 +242,14 @@ export default function Home({ user }) {
 }
 
 export async function getServerSideProps(context) {
+  try{
   var dataService = ServiceManager.getService("dataservice");
 
   var user = await dataService.getUser();
   return {
     props: { user:user },
   }
+}catch(e){console.log(e)}
+return {props:{user:null}}
 
 }
